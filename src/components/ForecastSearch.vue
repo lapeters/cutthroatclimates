@@ -3,7 +3,7 @@
     <p>Please search for any two cities. Only two cities at a time, we dont want a war!</p>
     <form class="forecast__form" v-on:submit.prevent="getCity">
       <input type="text" name="" value="" v-bind:placeholder="this.placeholder" v-model="city.search">
-      <button class="button button-search" :disabled=disabled>Submit</button>
+      <button class="button button-search" v-bind:disabled="isDisabled">Submit</button>
     </form>
     {{forecast}}
   </div>
@@ -27,8 +27,8 @@ export default {
       forecast: []
     }
   },
-  watch: {
-    disabled: function () {
+  computed: {
+    isDisabled: function () {
       return this.forecast.length > 1
     }
   },
