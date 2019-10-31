@@ -5,14 +5,20 @@
       <input type="text" name="" value="" v-bind:placeholder="this.placeholder" v-model="city.search">
       <button class="button button-search" v-bind:disabled="isDisabled">Submit</button>
     </form>
-    {{forecast}}
+    <template v-if="forecast.length">
+      <ForecastSearchResults :results="forecast"></ForecastSearchResults>
+    </template>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import ForecastSearchResults from '@/components/ForecastSearchResults'
 
 export default {
+  components: {
+    ForecastSearchResults
+  },
   data () {
     return {
       placeholder: 'Type in a city or zipcode...',
