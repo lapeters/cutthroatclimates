@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss" scoped>
   .forecast__results {
-    padding:3rem 0;
+    padding:3rem 0 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -34,7 +34,7 @@ export default {
       position: relative;
       .forecast__info {
         text-align: center;
-        padding:3rem 1.5rem;
+        padding:2rem 1.5rem;
         color: #fff;
         box-shadow:0 0 15px rgba(0,0,0,0.3);
         &.day {
@@ -48,6 +48,12 @@ export default {
           max-width:20%;
           display:block;
           margin:0 auto;
+        }
+        sup, sub {
+          font-size: 50%;
+        }
+        sup {
+          top: -0.7em;
         }
       }
     }

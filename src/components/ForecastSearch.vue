@@ -72,5 +72,27 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
+.forecast__search {
+  text-align: center;
+  .forecast__form {
+    input {
+      min-width: 30%;
+    }
+    .button-search {
+      @include theme-gradients($day: true);
+      color: $white;
+      font-weight:400;
+      text-transform: uppercase;
+      &:hover {
+        @include theme-gradients($day: false);
+      }
+      &:disabled {
+        &:hover {
+          @include theme-gradients($day: true);
+        }
+      }
+    }
+  }
+}
 </style>
