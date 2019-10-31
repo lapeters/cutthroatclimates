@@ -1,12 +1,12 @@
 <template lang="html">
-  <div id="app">
-    <router-view></router-view>
+  <div class="forecast">
+    <p>Hello World</p>
   </div>
 </template>
 
 <script>
-
 export default {
+  name: 'forecast',
   components: {
 
   }
