@@ -38,10 +38,10 @@ export default {
         color: #fff;
         box-shadow:0 0 15px rgba(0,0,0,0.3);
         &.day {
-          @include gradient(#2F80ED, #56CCF2, horizontal)
+          @include theme-gradients($day: true);
         }
         &.night {
-          @include gradient(#243B55, #141E30, horizontal)
+          @include theme-gradients($day: false);
         }
         img {
           width: auto;

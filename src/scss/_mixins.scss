@@ -11,3 +11,11 @@
     background: radial-gradient(ellipse at center, $start-color, $end-color);
   }
 }
+
+@mixin theme-gradients($day: true) {
+  @if $day{
+    @include gradient($day-first, $day-second, horizontal);
+  }@else {
+    @include gradient($night-first, $night-second, horizontal);
+  }
+}
