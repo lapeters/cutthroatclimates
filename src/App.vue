@@ -36,7 +36,6 @@ html {
 }
 body {
   margin:0;
-  padding:1px;
   background: rgb(239,248,255);
   background: linear-gradient(153deg, rgba(239,248,255,1) 0%, rgba(239,250,254,1) 50%, rgba(244,254,255,1) 100%);
   background-repeat: no-repeat;
@@ -47,14 +46,17 @@ body {
     position: relative;
     height:100%;
     width:100%;
-    padding:3rem 15px;
+    padding:0 15px;
+    display: flex;
+    flex-direction: column;
   }
 }
-h1, .h1, h2, .h2, h3 .h3, h4, .h4, h5, .h5, h6, .h6 {
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 0.01rem;
   color: $drk_blue;
+  margin-top:0;
   .forecast__info & {
     font-weight:400;
     margin:1rem 0;
@@ -80,6 +82,9 @@ h2, .h2 {
 }
 h3, .h3 {
   font-size: 1.25rem;
+}
+a {
+  text-decoration: none;
 }
 input, button {
   border: 1px solid rgba(0,0,0,0.1);
