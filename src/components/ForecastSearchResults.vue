@@ -1,37 +1,36 @@
 <template lang="html">
   <div class="forecast__results">
-    <template v-if="isResultsFull">
-      <div class="forecast__results-game">
-        <h3>Now Choose a Fighter</h3>
+    <div v-for="(item, index) in forecasts" v-bind:index="index" v-bind:key="index" class="forecast__results-card">
+      <div class="forecast__info" v-bind:class="{ day: item.IsDayTime, night: !item.IsDayTime }">
+        <h2>{{ item.City.Name }}, {{item.City.Area}}</h2>
+        <h3 class="h1">{{ item.Temperature.Imperial.Value }}<sup>&deg;{{ item.Temperature.Imperial.Unit }}</sup></h3>
+        <img v-bind:src="'https://www.accuweather.com/images/weathericons/'+ item.WeatherIcon +'.svg'">
+        <h3 class="h2">{{ item.WeatherText }}</h3>
       </div>
-    </template>
-    <div v-for="(res, index) in results" v-bind:index="index" v-bind:key="index" class="forecast__results-card">
-      <div class="forecast__info" v-bind:class="{ day: res.IsDayTime, night: !res.IsDayTime }">
-        <h2>{{ res.City.Name }}, {{res.City.Area}}</h2>
-        <h3 class="h1">{{ res.Temperature.Imperial.Value }}<sup>&deg;{{ res.Temperature.Imperial.Unit }}</sup></h3>
-        <img v-bind:src="'https://www.accuweather.com/images/weathericons/'+ res.WeatherIcon +'.svg'">
-        <h3 class="h2">{{ res.WeatherText }}</h3>
-      </div>
-      <template v-if="isResultsFull">
-        <router-link v-bind:to="{ name: 'game', params: { res: results, i: index } }"><button type="button" class="forecast__button-fighter">Select</button></router-link>
+      <template v-if="isForecastsFull">
+        <router-link v-on:click.native="selectPlayer(index)" to="/game" class="button button-player">Select</router-link>
       </template>
-      <button class="forecast__button-remove" v-on:click="results.splice(index, 1)">X</button>
+      <button class="forecast__button-remove" v-on:click="removeForecast(index)">X</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    results: Array
-  },
-  data () {
-    return {
+  computed: {
+    forecasts: function () {
+      return this.$store.getters.FORECASTS
+    },
+    isForecastsFull: function () {
+      return this.$store.getters.IS_FORECASTS_FULL
     }
   },
-  computed: {
-    isResultsFull: function () {
-      return this.results.length > 1
+  methods: {
+    removeForecast: function (payload) {
+      this.$store.dispatch('REMOVE_FORECAST', payload)
+    },
+    selectPlayer: function (payload) {
+      this.$store.dispatch('SELECT_FORECAST', payload)
     }
   }
 }

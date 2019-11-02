@@ -3,16 +3,15 @@
     <p>Please search for any two cities. Only two cities at a time, we dont want a war!</p>
     <form class="forecast__form" v-on:submit.prevent="getCity">
       <input type="text" name="" value="" v-bind:placeholder="this.placeholder" v-model="city.search">
-      <button class="button button-search" v-bind:disabled="isDisabled">Submit</button>
+      <button class="button button-search" v-bind:disabled="isForecastsFull">Submit</button>
     </form>
-    <template v-if="forecast.length">
-      <ForecastSearchResults :results="forecast"></ForecastSearchResults>
+    <template v-if="this.$store.getters.FORECASTS.length">
+      <ForecastSearchResults></ForecastSearchResults>
     </template>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 import ForecastSearchResults from '@/components/ForecastSearchResults'
 
 export default {
@@ -22,51 +21,32 @@ export default {
   data () {
     return {
       placeholder: 'Type in a city or zipcode...',
-      disabled: false,
       city: {
-        search: '',
-        name: '',
-        area: '',
-        ID: ''
-      },
-      loading: true,
-      forecast: []
+        search: ''
+      }
     }
   },
   computed: {
-    isDisabled: function () {
-      return this.forecast.length > 1
+    isForecastsFull: function () {
+      return this.$store.getters.IS_FORECASTS_FULL
     }
   },
   methods: {
     getCity: function () {
-      var self = this
-      axios
-        .get(process.env.VUE_APP_AW_URL + 'locations/v1/cities/search?apikey=' + process.env.VUE_APP_AW_API + '&q=' + self.city.search)
-        .then(res => {
-          if (res) {
-            self.getForecast(res)
-          }
-        })
-        .catch((error) => console.log(error))
+      let payload = {
+        term: this.city.search
+      }
+      this.$store.dispatch('GET_CITY', payload).then((result) => {
+        this.getForecast(result.data[0])
+      })
     },
-    getForecast: function (cityRes) {
-      var self = this
-      self.city.ID = cityRes.data[0].Key
-      axios
-        .get(process.env.VUE_APP_AW_URL + 'currentconditions/v1/' + self.city.ID + '?apikey=' + process.env.VUE_APP_AW_API)
-        .then(res => {
-          if (res) {
-            self.parseForecast(cityRes.data, res.data)
-          }
-        })
-        .catch((error) => console.log(error))
-    },
-    parseForecast: function (cityRes, forecastRes) {
-      this.city.name = cityRes[0].EnglishName
-      this.city.area = (cityRes[0].Country.ID === 'US' ? cityRes[0].AdministrativeArea.EnglishName : cityRes[0].Country.EnglishName)
-      forecastRes[0].City = { Name: this.city.name, Area: this.city.area }
-      this.forecast.push(forecastRes[0])
+    getForecast: function (result) {
+      let payload = {
+        id: result.Key,
+        name: result.EnglishName,
+        area: (result.Country.ID === 'US' ? result.AdministrativeArea.EnglishName : result.Country.EnglishName)
+      }
+      this.$store.dispatch('GET_FORECAST', payload)
     }
   }
 }
