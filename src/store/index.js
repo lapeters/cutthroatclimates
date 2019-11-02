@@ -6,7 +6,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    forecasts: []
+    forecasts: [],
+    players: [
+      { i: 0, name: 'player', health: 100 },
+      { i: 1, name: 'cpu', health: 100 }
+    ],
+    gameLog: []
   },
   getters: {
     FORECASTS: state => {
@@ -14,6 +19,9 @@ export default new Vuex.Store({
     },
     IS_FORECASTS_FULL: state => {
       return state.forecasts.length > 1
+    },
+    GET_PLAYER_BY_NAME: state => (name) => {
+      return state.players.find(players => players.name === name)
     }
   },
   mutations: {
@@ -25,6 +33,10 @@ export default new Vuex.Store({
     },
     SET_PLAYER: (state, index) => {
       Vue.set(state.forecasts[index], 'Player', true)
+    },
+    ATTACK: (state, { attack, name }) => {
+      var target = state.players.find(players => players.name === name)
+      target.health -= attack
     }
   },
   actions: {
@@ -43,8 +55,19 @@ export default new Vuex.Store({
     },
     SELECT_FORECAST: async (context, index) => {
       context.commit('SET_PLAYER', index)
+    },
+    GET_RANDOM_STRIKE: async (contex, special) => {
+      const strike = Math.round(Math.random() * 10)
+      return special ? strike + 10 : strike
+    },
+    ATTACK ({ dispatch, commit }, { special, name }) {
+      return dispatch('GET_RANDOM_STRIKE', special).then((attack) => {
+        var payload = {
+          attack: attack,
+          name: name
+        }
+        commit('ATTACK', payload)
+      })
     }
-  },
-  modules: {
   }
 })
