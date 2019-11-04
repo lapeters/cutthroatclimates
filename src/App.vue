@@ -46,13 +46,13 @@ body {
     position: relative;
     height:100%;
     width:100%;
-    padding:0 15px;
+    padding:55px 15px 0;
     display: flex;
     flex-direction: column;
   }
 }
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-  font-weight: 200;
+  font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.01rem;
   color: $drk_blue;

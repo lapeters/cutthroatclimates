@@ -24,8 +24,7 @@ export default {
 .header {
   min-height:55px;
   height: auto;
-  /*position:fixed;*/
-  padding-bottom:1rem;
+  position:fixed;
   top:0;
   width:100%;
   left:0;

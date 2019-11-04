@@ -37,6 +37,19 @@ export default new Vuex.Store({
     ATTACK: (state, { attack, name }) => {
       var target = state.players.find(players => players.name === name)
       target.health -= attack
+    },
+    HEAL: (state, { heal, name }) => {
+      var target = state.players.find(players => players.name === name)
+      if (target.health + heal > 100) {
+        target.health = 100
+      } else {
+        target.health += heal
+      }
+    },
+    RESET: (state) => {
+      for (var i = 0, l = state.players.length; i < l; i++) {
+        Vue.set(state.players[i], 'health', 100)
+      }
     }
   },
   actions: {
@@ -56,18 +69,30 @@ export default new Vuex.Store({
     SELECT_FORECAST: async (context, index) => {
       context.commit('SET_PLAYER', index)
     },
-    GET_RANDOM_STRIKE: async (contex, special) => {
-      const strike = Math.round(Math.random() * 10)
-      return special ? strike + 10 : strike
+    GET_RANDOM_NUM: async (contex, special) => {
+      var num = Math.round(Math.random() * 10)
+      return special ? num + 10 : num
     },
     ATTACK ({ dispatch, commit }, { special, name }) {
-      return dispatch('GET_RANDOM_STRIKE', special).then((attack) => {
+      return dispatch('GET_RANDOM_NUM', special).then((attack) => {
         var payload = {
           attack: attack,
           name: name
         }
         commit('ATTACK', payload)
       })
+    },
+    HEAL ({ dispatch, commit }, name) {
+      return dispatch('GET_RANDOM_NUM', false).then((heal) => {
+        var payload = {
+          heal: heal,
+          name: name
+        }
+        commit('HEAL', payload)
+      })
+    },
+    RESET: async (context) => {
+      context.commit('RESET')
     }
   }
 })

@@ -1,7 +1,5 @@
 <template lang="html">
   <div class="forecast">
-    <h1>Cutthroat <strong>Climates</strong></h1>
-    <h2>Your run-of-the-mill weather app...with a touch of malice.</h2>
     <ForecastSearch />
   </div>
 </template>

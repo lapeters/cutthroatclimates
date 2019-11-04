@@ -1,8 +1,9 @@
 <template lang="html">
   <div class="game__controls">
     <button type="button" v-on:click="attack(false)">Attack</button>
-    <button type="button">Special Attack</button>
-    <button type="button">Reset</button>
+    <button type="button" v-on:click="attack(true)">Special Attack</button>
+    <button type="button" v-on:click="heal()">Heal</button>
+    <button type="button" v-on:click="reset()">Reset</button>
   </div>
 </template>
 
@@ -20,6 +21,13 @@ export default {
       }
       this.$store.dispatch('ATTACK', payloadCPU)
       this.$store.dispatch('ATTACK', payloadP1)
+    },
+    heal: function () {
+      this.$store.dispatch('HEAL', 'player')
+      this.$store.dispatch('HEAL', 'cpu')
+    },
+    reset: function () {
+      this.$store.dispatch('RESET')
     }
   }
 }
