@@ -8,23 +8,39 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
+  computed: {
+    ...mapState(['players'])
+  },
+  created () {
+    this.$store.subscribe((mutation, state) => {
+      if (mutation.type === 'ATTACK') {
+        var player = this.getPlayerByName(mutation.payload.name)
+        if (player.health === 0) {
+          console.log(player.name + ' lost')
+        }
+      }
+    })
+  },
   methods: {
+    getPlayerByName: function (name) {
+      return this.$store.getters.GET_PLAYER_BY_NAME(name)
+    },
     attack: function (special) {
-      var payloadCPU = {
-        special: special,
-        name: 'cpu'
+      var payload
+      for (var i = 0, l = this.players.length; i < l; i++) {
+        payload = {
+          special: special,
+          name: this.players[i].name
+        }
+        this.$store.dispatch('ATTACK', payload)
       }
-      var payloadP1 = {
-        special: special,
-        name: 'player'
-      }
-      this.$store.dispatch('ATTACK', payloadCPU)
-      this.$store.dispatch('ATTACK', payloadP1)
     },
     heal: function () {
-      this.$store.dispatch('HEAL', 'player')
-      this.$store.dispatch('HEAL', 'cpu')
+      for (var i = 0, l = this.players.length; i < l; i++) {
+        this.$store.dispatch('HEAL', this.players[i].name)
+      }
     },
     reset: function () {
       this.$store.dispatch('RESET')

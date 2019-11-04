@@ -8,8 +8,8 @@ export default new Vuex.Store({
   state: {
     forecasts: [],
     players: [
-      { i: 0, name: 'player', health: 100 },
-      { i: 1, name: 'cpu', health: 100 }
+      { i: 0, name: 'player', health: 100, defeated: false },
+      { i: 1, name: 'cpu', health: 100, defeated: false }
     ],
     gameLog: []
   },
@@ -36,7 +36,12 @@ export default new Vuex.Store({
     },
     ATTACK: (state, { attack, name }) => {
       var target = state.players.find(players => players.name === name)
-      target.health -= attack
+      if (target.health - attack <= 0) {
+        target.health = 0
+        Vue.set(target, 'defeated', true)
+      } else {
+        target.health -= attack
+      }
     },
     HEAL: (state, { heal, name }) => {
       var target = state.players.find(players => players.name === name)
