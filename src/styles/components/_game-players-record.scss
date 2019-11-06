@@ -1,0 +1,27 @@
+.game__records {
+  justify-content: center;
+  .game__log {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    div {
+      text-align: center;
+      &.log__attack {
+        background: rgba(red, 0.5)
+      }
+      &.log__heal {
+        background: rgba($drk_blue, 0.5)
+      }
+      p {
+        margin:0;
+        padding:0.5rem 0;
+        color: $white;
+        .log__player {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}

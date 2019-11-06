@@ -40,22 +40,6 @@ export default {
     ...mapActions({
       getForecast: 'GET_FORECAST'
     })
-    /* getCity: function () {
-      let payload = {
-        term: this.city.search
-      }
-      this.$store.dispatch('GET_CITY', payload).then((result) => {
-        this.getForecast(result.data[0])
-      })
-    },
-    getForecast: function (result) {
-      let payload = {
-        id: result.Key,
-        name: result.EnglishName,
-        area: (result.Country.ID === 'US' ? result.AdministrativeArea.EnglishName : result.Country.EnglishName)
-      }
-      this.$store.dispatch('GET_FORECAST', payload)
-    } */
   }
 }
 </script>
