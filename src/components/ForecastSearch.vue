@@ -1,10 +1,10 @@
 <template lang="html">
-  <div class="forecast__wrapper">
-    <div class="forecast__search">
+  <div class="forecast__wrapper row">
+    <div class="forecast__search col-12">
       <h1>Cutthroat <strong>Climates</strong></h1>
       <h2>Your run-of-the-mill weather app...with a touch of malice.</h2>
       <p>Please search for any two cities. Only two cities at a time, we dont want a war!</p>
-      <form class="forecast__form" v-on:submit.prevent="getCity">
+      <form class="forecast__form" v-on:submit.prevent="getForecast(city.search)">
         <input type="text" name="" value="" v-bind:placeholder="this.placeholder" v-model="city.search">
         <button class="button button-search" v-bind:disabled="isForecastsFull">Submit</button>
       </form>
@@ -17,6 +17,7 @@
 
 <script>
 import ForecastSearchResults from '@/components/ForecastSearchResults'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
@@ -31,12 +32,15 @@ export default {
     }
   },
   computed: {
-    isForecastsFull: function () {
-      return this.$store.getters.IS_FORECASTS_FULL
-    }
+    ...mapGetters({
+      isForecastsFull: 'IS_FORECASTS_FULL'
+    })
   },
   methods: {
-    getCity: function () {
+    ...mapActions({
+      getForecast: 'GET_FORECAST'
+    })
+    /* getCity: function () {
       let payload = {
         term: this.city.search
       }
@@ -51,32 +55,10 @@ export default {
         area: (result.Country.ID === 'US' ? result.AdministrativeArea.EnglishName : result.Country.EnglishName)
       }
       this.$store.dispatch('GET_FORECAST', payload)
-    }
+    } */
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.forecast__search {
-  text-align: center;
-  .forecast__form {
-    input {
-      min-width: 30%;
-    }
-    .button-search {
-      @include theme-gradients($day: true);
-      color: $white;
-      font-weight:400;
-      text-transform: uppercase;
-      &:hover {
-        @include theme-gradients($day: false);
-      }
-      &:disabled {
-        &:hover {
-          @include theme-gradients($day: true);
-        }
-      }
-    }
-  }
-}
 </style>

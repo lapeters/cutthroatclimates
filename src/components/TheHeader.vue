@@ -1,6 +1,6 @@
 <template lang="html">
-  <header class="header">
-    <div class="header__wrap">
+  <header class="header row">
+    <div class="header__wrap col-12">
       <div class="logo">CC</div>
       <nav>
         <ul>
@@ -21,27 +21,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header {
-  min-height:55px;
-  height: auto;
-  position:fixed;
-  top:0;
-  width:100%;
-  left:0;
-  display:flex;
-  .header__wrap {
-    width: 100%;
-    padding:0.5rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    nav {
-      ul {
-        padding:0;
-        list-style-type: none;
-        margin:0;
-      }
-    }
-  }
-}
 </style>

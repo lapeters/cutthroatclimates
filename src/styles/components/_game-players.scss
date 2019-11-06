@@ -1,0 +1,49 @@
+.game__players {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top:2rem;
+  margin-bottom:2rem;
+  .game__player {
+    text-align: center;
+    &.game__player-1 {
+      order:1;
+    }
+    &.game__player-CPU {
+      order:2;
+    }
+    h2 {
+      text-transform: uppercase;
+    }
+    img {
+      width: auto;
+      max-width:50%;
+      display:block;
+      margin:1rem auto;
+    }
+    .game__health-wrapper {
+      width: 100%;
+      height:40px;
+      background: #a0a5ab;
+      position:relative;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      .game__health-sum {
+        z-index:2;
+        h3 {
+          color: $white;
+          margin:0;
+        }
+      }
+      .game__health-bar {
+        position:absolute;
+        top:0;
+        left:0;
+        height:100%;
+        background: red;
+      }
+    }
+  }
+}

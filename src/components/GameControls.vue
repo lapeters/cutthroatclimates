@@ -1,9 +1,11 @@
 <template lang="html">
-  <div class="game__controls">
-    <button type="button" v-on:click="attack(false)">Attack</button>
-    <button type="button" v-on:click="attack(true)">Special Attack</button>
-    <button type="button" v-on:click="heal()">Heal</button>
-    <button type="button" v-on:click="reset()">Reset</button>
+  <div class="game__controls row">
+    <div class="game__button-group col-12">
+      <button type="button" v-on:click="attack(false)">Attack</button>
+      <button type="button" v-on:click="attack(true)">Special Attack</button>
+      <button type="button" v-on:click="heal()">Heal</button>
+      <button type="button" v-on:click="reset()">Reset</button>
+    </div>
   </div>
 </template>
 
@@ -11,35 +13,30 @@
 import { mapState } from 'vuex'
 export default {
   computed: {
-    ...mapState(['players'])
-  },
-  created () {
-    this.$store.subscribe((mutation, state) => {
-      if (mutation.type === 'ATTACK') {
-        var player = this.getPlayerByName(mutation.payload.name)
-        if (player.health === 0) {
-          console.log(player.name + ' lost')
-        }
-      }
-    })
+    ...mapState(['players']),
+    isPlayerDeafeated: function () {
+      return this.$store.getters.IS_PLAYER_DEFEATED
+    }
   },
   methods: {
     getPlayerByName: function (name) {
       return this.$store.getters.GET_PLAYER_BY_NAME(name)
     },
     attack: function (special) {
-      var payload
       for (var i = 0, l = this.players.length; i < l; i++) {
-        payload = {
+        var payload = {
           special: special,
           name: this.players[i].name
         }
-        this.$store.dispatch('ATTACK', payload)
+        if (this.isPlayerDeafeated.length === 0) {
+          this.$store.dispatch('ATTACK', payload)
+        }
       }
     },
     heal: function () {
       for (var i = 0, l = this.players.length; i < l; i++) {
-        this.$store.dispatch('HEAL', this.players[i].name)
+        var name = this.players[i].name
+        this.$store.dispatch('HEAL', name)
       }
     },
     reset: function () {
@@ -50,12 +47,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .game__controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    button {
-      margin:0 15px;
-    }
-  }
 </style>

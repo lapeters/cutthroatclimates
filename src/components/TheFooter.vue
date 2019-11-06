@@ -1,5 +1,7 @@
 <template lang="html">
-  <footer></footer>
+  <footer class="footer row">
+    <div class="footer__copyright col-12 text-center">&copy; Cutthroat Climates / About / Github</div>
+  </footer>
 </template>
 
 <script>

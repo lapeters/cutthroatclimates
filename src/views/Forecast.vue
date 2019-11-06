@@ -15,7 +15,4 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.forecast {
-  text-align: center;
-}
 </style>

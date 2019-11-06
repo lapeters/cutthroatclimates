@@ -1,0 +1,58 @@
+.forecast__results {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width:100%;
+  margin-top:2rem;
+  margin-bottom:2rem;
+  .forecast__instructions {
+    text-align: center;
+  }
+  .forecast__results-card {
+    .forecast__button-player {
+      display: inline-block;
+      background: #fff;
+      padding: 0.5rem 1rem;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      position: relative;
+      z-index:2;
+      box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.1);
+    }
+    .forecast__info {
+      position: relative;
+      text-align: center;
+      padding:2rem 1.5rem;
+      color: #fff;
+      box-shadow:0 0 15px rgba(0,0,0,0.3);
+      &.day {
+        @include theme-gradients($day: true);
+      }
+      &.night {
+        @include theme-gradients($day: false);
+      }
+      .forecast__button-remove {
+        position:absolute;
+        right:15px;
+        top:0;
+        border:none;
+        background:transparent;
+        color:#fff;
+        padding:15px;
+        cursor: pointer;
+      }
+      img {
+        width: auto;
+        max-width:20%;
+        display:block;
+        margin:0 auto;
+      }
+      sup, sub {
+        font-size: 50%;
+      }
+      sup {
+        top: -0.7em;
+      }
+    }
+  }
+}
