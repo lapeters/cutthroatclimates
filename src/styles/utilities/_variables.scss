@@ -1,0 +1,43 @@
+// COLOR VARIABLES
+$drk_blue: #131e2f;
+$grey: #2C3E50;
+$white: #fff;
+$black: #000;
+
+$day-first: #2F80ED;
+$day-last: #56CCF2;
+$night-first: #243B55;
+$night-last: #141E30;
+$sunrise-first: #FF512F;
+$sunrise-last: #F09819;
+
+// GRID VARIABLES
+$grid__cols: 12;
+
+$grid__breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+  "xxl": 1440px,
+  "xxxl": 1920px
+);
+
+$map-grid-props: (
+  '': 0,
+  '-sm': map-get($grid__breakpoints, sm),
+  '-md': map-get($grid__breakpoints, md),
+  '-lg': map-get($grid__breakpoints, lg),
+  '-xl': map-get($grid__breakpoints, xl),
+  '-xxl': map-get($grid__breakpoints, xxl),
+  '-xxxl': map-get($grid__breakpoints, xxxl)
+);
+
+$container-max-widths: (
+  "sm": 540px,
+  "md": 720px,
+  "lg": 940px,
+  "xl": 1140px,
+  "xxl": 1140px,
+  "xxxl": 1372px,
+);

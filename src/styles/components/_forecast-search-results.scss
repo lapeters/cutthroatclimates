@@ -11,13 +11,18 @@
   .forecast__results-card {
     .forecast__button-player {
       display: inline-block;
-      background: #fff;
+      @include theme-gradients(sunrise);
+      border-color: $sunrise-first;
+      color: $white;
       padding: 0.5rem 1rem;
       left: 50%;
       transform: translate(-50%, 50%);
       position: relative;
       z-index:2;
       box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.1);
+      &:hover {
+        @include gradient($sunrise-first, $sunrise-first, horizontal);
+      }
     }
     .forecast__info {
       position: relative;
@@ -26,10 +31,10 @@
       color: #fff;
       box-shadow:0 0 15px rgba(0,0,0,0.3);
       &.day {
-        @include theme-gradients($day: true);
+        @include theme-gradients(day);
       }
       &.night {
-        @include theme-gradients($day: false);
+        @include theme-gradients(night);
       }
       .forecast__button-remove {
         position:absolute;
@@ -43,15 +48,9 @@
       }
       img {
         width: auto;
-        max-width:20%;
+        max-width:30%;
         display:block;
         margin:0 auto;
-      }
-      sup, sub {
-        font-size: 50%;
-      }
-      sup {
-        top: -0.7em;
       }
     }
   }

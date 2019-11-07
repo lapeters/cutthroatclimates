@@ -1,30 +1,51 @@
 <template lang="html">
-  <div class="forecast__results">
+  <section class="forecast__results">
     <template v-if="isForecastsFull">
-      <div class="forecast__instructions col-12">
-        <h2>Now Select Your Fighter!</h2>
-        <a href="#">Uh....fighter?</a>
+      <div class="forecast__instructions col--12">
+        <h2>Now Select Your <strong>Fighter</strong>!</h2>
+        <button class="button-bare" @click="showModal">Uh....fighter?!</button>
+        <modal v-show="isModalVisible" v-bind:close="closeModal">
+          <div slot="header">Thats Right!</div>
+          <div slot="body">
+            <p>Cutthroat Climates is the weather app that turns into a weather-themed death match! The rules are simple:
+            two climates walk in and only one walks out!</p>
+            <p>In all seriousness, just select which local weather you'd like to play as. As of now there are no
+            special advantages or disadvantages for any conditions.</p>
+            <p>The weather forecast you don't select will be your opponent. You'll have a regular attack, special attack, and healing at your disposal.
+            It'll make much more sense once the game begins so go ahead and choose!</p>
+          </div>
+          <div slot="footer"></div>
+        </modal>
       </div>
     </template>
-    <div v-for="(item, index) in forecasts" v-bind:index="index" v-bind:key="index" class="forecast__results-card col-6">
+    <div v-for="(item, index) in forecasts" v-bind:index="index" v-bind:key="index" class="forecast__results-card col--xxxl-4 col--lg-5 col--11">
       <template v-if="isForecastsFull">
-        <router-link v-on:click.native="selectPlayer(index)" to="/game" class="forecast__button-player">Select</router-link>
+        <router-link v-on:click.native="selectPlayer(index)" to="/game" class="button forecast__button-player">Select</router-link>
       </template>
       <div class="forecast__info" v-bind:class="{ day: item.IsDayTime, night: !item.IsDayTime }">
-        <button class="forecast__button-remove" btn v-on:click="removeForecast(index)">X</button>
+        <button class="forecast__button-remove" btn v-on:click="removeForecast(index)"><font-awesome-icon :icon="['fas', 'times']" size="lg" /></button>
         <h2>{{ item.City.Name }}, {{item.City.Area}}</h2>
         <h3 class="h1">{{ item.Temperature.Imperial.Value }}<sup>&deg;{{ item.Temperature.Imperial.Unit }}</sup></h3>
         <img v-bind:src="'https://www.accuweather.com/images/weathericons/'+ item.WeatherIcon +'.svg'">
-        <h3 class="h2">{{ item.WeatherText }}</h3>
+        <h3>{{ item.WeatherText }}</h3>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import Modal from '@/components/Modal'
 
 export default {
+  data () {
+    return {
+      isModalVisible: false
+    }
+  },
+  components: {
+    Modal
+  },
   computed: {
     ...mapGetters({
       forecasts: 'FORECASTS',
@@ -35,7 +56,13 @@ export default {
     ...mapActions({
       removeForecast: 'REMOVE_FORECAST',
       selectPlayer: 'SELECT_FORECAST'
-    })
+    }),
+    showModal: function () {
+      this.isModalVisible = true
+    },
+    closeModal: function () {
+      this.isModalVisible = false
+    }
   }
 }
 </script>

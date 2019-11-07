@@ -5,8 +5,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    button {
+    .button-game {
       margin:0 15px;
+      @include theme-gradients(day);
+      border-color: $day-first;
+      color:#fff;
+      &:hover {
+        @include theme-gradients(night);
+        border-color: $night-first;
+      }
     }
   }
 }

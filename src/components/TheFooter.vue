@@ -1,6 +1,6 @@
 <template lang="html">
   <footer class="footer row">
-    <div class="footer__copyright col-12 text-center">&copy; Cutthroat Climates / About / Github</div>
+    <div class="footer__copyright col--12">&copy; Cutthroat Climates / About / <a href="#"><font-awesome-icon :icon="['fab', 'github']" /></a></div>
   </footer>
 </template>
 

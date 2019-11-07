@@ -1,7 +1,7 @@
 <template lang="html">
-  <div class="forecast">
+  <main class="forecast">
     <ForecastSearch />
-  </div>
+  </main>
 </template>
 
 <script>

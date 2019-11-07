@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="game">
+  <main class="game">
     <template v-if="isForecastsFull">
       <GamePlayers />
       <GameControls />
@@ -8,7 +8,7 @@
     <template v-else>
       <Game404 />
     </template>
-  </div>
+  </main>
 </template>
 
 <script>

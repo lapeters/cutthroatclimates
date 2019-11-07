@@ -1,0 +1,54 @@
+.modal-fade-enter,
+.modal-fade-leave-active {
+  opacity: 0;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity .5s ease
+}
+.modal__backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba($black, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index:10;
+
+  .modal {
+    background: $white;
+    box-shadow: 2px 2px 50px 1px rgba($black, 0.3);
+    overflow-x: auto;
+    padding-top:1rem;
+    padding-bottom:1rem;
+    display: flex;
+    flex-direction: column;
+
+    .modal__header, .modal__footer {
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal__header {
+      .button-close {
+        position: absolute;
+        border: none;
+        padding:15px;
+        right:0;
+        top:0;
+      }
+    }
+    .modal__body {
+      position: relative;
+      padding: 20px 10px;
+    }
+    h2 {
+      margin:0;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 <template lang="html">
   <header class="header row">
-    <div class="header__wrap col-12">
+    <div class="header__wrap col--12">
       <div class="logo">CC</div>
       <nav>
         <ul>

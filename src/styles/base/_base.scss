@@ -1,6 +1,11 @@
 :root {
   font-size: 18px;
 }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 html, body {
   height: 100%;
   overflow: auto;
@@ -25,53 +30,42 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
+
+    article, aside, figcaption, figure, hgroup, nav{
+      display: block;
+    }
+
+    [tabindex="-1"]:focus {
+      outline: 0 !important;
+    }
   }
-}
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 0.01rem;
-  color: $drk_blue;
-  margin-top:0;
-  .forecast__info & {
-    font-weight:400;
-    margin:1rem 0;
-    color: $white;
+  .container {
+    width:100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    @include make-container-max-widths();
+    &--fluid {
+      @extend .container;
+      max-width: 100%;
+    }
   }
-  & strong {
-    font-weight: 900;
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
   }
-}
-h1, .h1 {
-  font-size: 3rem;
-  margin: 0 0 0.5rem;
-  .forecast__info & {
-    font-size:5rem;
+
+  .col {
+    @each $modifier , $breakpoint in $map-grid-props {
+      @include create-col-classes($modifier, $grid__cols, $breakpoint);
+    }
   }
-}
-h2, .h2 {
-  font-size: 1.5rem;
-  text-transform: none;
-  .forecast__info & {
-    text-transform: uppercase;
-  }
-}
-h3, .h3 {
-  font-size: 1.25rem;
-}
-a {
-  text-decoration: none;
-}
-input, button {
-  border: 1px solid rgba(0,0,0,0.1);
-  padding: 1rem;
-  font-weight:300;
-  color: $drk_blue;
-}
-button {
-  cursor: pointer;
-  transition: all .4s;
-  &:disabled {
-    opacity:0.5;
+  img {
+    width: auto;
+    max-width: 100%;
   }
 }

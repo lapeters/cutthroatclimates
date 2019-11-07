@@ -5,16 +5,16 @@
       min-width: 30%;
     }
     .button-search {
-      @include theme-gradients($day: true);
+      @include theme-gradients(day);
       color: $white;
       font-weight:400;
       text-transform: uppercase;
       &:hover {
-        @include theme-gradients($day: false);
+        @include theme-gradients(night);
       }
       &:disabled {
         &:hover {
-          @include theme-gradients($day: true);
+          @include theme-gradients(day);
         }
       }
     }

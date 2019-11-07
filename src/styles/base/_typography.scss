@@ -2,3 +2,72 @@
 
 $primary: 'Montserrat', sans-serif;
 $body-weight: 300;
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.01rem;
+  color: $drk_blue;
+  margin-top:0;
+  margin-bottom: .5rem;
+
+  .game__player &, .forecast__info & {
+    font-weight:400;
+    margin:1rem 0;
+    color: $white;
+  }
+  .game__player & {
+    color: $drk_blue;
+  }
+
+  & strong {
+    font-weight: 900;
+  }
+  sup, sub {
+    font-size: 50%;
+  }
+  sup {
+    top: -0.7em;
+  }
+}
+
+h1, .h1 {
+  font-size: 3rem;
+  .forecast__info & {
+    font-size: 5rem;
+  }
+}
+
+h2, .h2 {
+  font-size: 1.75rem;
+}
+
+h3, .h3 {
+  font-size: 1.5rem;
+}
+
+h4, .h4 {
+  font-size: 1.25rem;
+}
+
+h5, .h5 {
+  font-size: 1rem;
+}
+
+h6, .h6 {
+  font-size: 0.75rem;
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+  color:$day-first;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.lead {
+  font-size: 1.25rem;
+  text-transform: none;
+}

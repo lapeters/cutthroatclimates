@@ -1,14 +1,14 @@
 <template lang="html">
   <div class="forecast__wrapper row">
-    <div class="forecast__search col-12">
+    <section class="forecast__search col--12">
       <h1>Cutthroat <strong>Climates</strong></h1>
-      <h2>Your run-of-the-mill weather app...with a touch of malice.</h2>
+      <p class="lead">Your run-of-the-mill weather app...with a touch of malice.</p>
       <p>Please search for any two cities. Only two cities at a time, we dont want a war!</p>
       <form class="forecast__form" v-on:submit.prevent="getForecast(city.search)">
         <input type="text" name="" value="" v-bind:placeholder="this.placeholder" v-model="city.search">
-        <button class="button button-search" v-bind:disabled="isForecastsFull">Submit</button>
+        <button class="button button-search" v-bind:disabled="isForecastsFull"><font-awesome-icon :icon="['fas', 'search']" /></button>
       </form>
-    </div>
+    </section>
     <template v-if="this.$store.getters.FORECASTS.length">
       <ForecastSearchResults></ForecastSearchResults>
     </template>
@@ -17,7 +17,7 @@
 
 <script>
 import ForecastSearchResults from '@/components/ForecastSearchResults'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -37,9 +37,10 @@ export default {
     })
   },
   methods: {
-    ...mapActions({
-      getForecast: 'GET_FORECAST'
-    })
+    getForecast: function (term) {
+      this.$store.dispatch('GET_FORECAST', term)
+      this.city.search = ''
+    }
   }
 }
 </script>

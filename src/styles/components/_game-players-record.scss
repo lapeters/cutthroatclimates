@@ -6,22 +6,27 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    div {
+    .log__wrapper {
+      width: 50%;
       text-align: center;
+      border-bottom:1px solid rgba($white, 0.3);
       &.log__attack {
-        background: rgba(red, 0.5)
+        background: rgba(#cb2d3e, 0.5)
       }
       &.log__heal {
-        background: rgba($drk_blue, 0.5)
+        background: rgba($grey, 0.5)
       }
       p {
         margin:0;
         padding:0.5rem 0;
         color: $white;
-        .log__player {
-          text-transform: uppercase;
-        }
       }
     }
+  }
+  .log__player {
+    text-transform: uppercase;
+  }
+  .modal__body {
+    text-align: center;
   }
 }
