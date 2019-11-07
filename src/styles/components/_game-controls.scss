@@ -5,11 +5,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    @include media(mq('md'), 'min') {
+      flex-direction: row;
+    }
     .button-game {
-      margin:0 15px;
+      width:100%;
       @include theme-gradients(day);
       border-color: $day-first;
       color:#fff;
+      @include media(mq('md'), 'min') {
+        width: auto;
+        min-width:20%;
+        margin:0 15px;
+      }
       &:hover {
         @include theme-gradients(night);
         border-color: $night-first;

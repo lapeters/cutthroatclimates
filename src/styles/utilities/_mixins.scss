@@ -47,7 +47,7 @@
   }
 }
 
-@mixin create-mq($breakpoint, $min-or-max) {
+@mixin media($breakpoint, $min-or-max) {
   @if($breakpoint == 0) {
     @content;
   } @else {
@@ -58,7 +58,7 @@
 }
 
 @mixin create-col-classes($modifier, $grid-cols, $breakpoint) {
-  @include create-mq($breakpoint, 'min') {
+  @include media($breakpoint, 'min') {
     &-#{$modifier}-offset-0 {
       margin-left: 0;
     }
@@ -68,7 +68,7 @@
         position: relative;
         padding-right: 15px;
         padding-left: 15px;
-        flex-basis: (100 / ($grid-cols / $i) ) * 1%;
+        flex: 0 0 (100 / ($grid-cols / $i) ) * 1%;
         max-width: (100 / ($grid-cols / $i) ) * 1%;
       }
       &-#{$modifier}-offset-#{$i} {
@@ -82,12 +82,12 @@
   @if($modifier == '') {
     $modifier: '-xs';
   }
-  @include create-mq($breakpoint - 1, 'max') {
+  @include media($breakpoint - 1, 'max') {
     .hidden#{$modifier}-down {
       display: none !important;
     }
   }
-  @include create-mq($breakpoint, 'min') {
+  @include media($breakpoint, 'min') {
     .hidden#{$modifier}-up {
       display: none !important;
     }

@@ -2,3 +2,7 @@
   $min: map-get($breakpoints, $name);
   @return if($min != 0, $min, null);
 }
+
+@function mq($mq-var) {
+  @return map-get($grid__breakpoints, $mq-var);
+}

@@ -1,5 +1,11 @@
 :root {
-  font-size: 18px;
+  font-size: 15px;
+  @include media(mq(lg), min) {
+    font-size:16px;
+  }
+  @include media(mq(xl), min) {
+    font-size: 18px;
+  }
 }
 *,
 *::before,
@@ -30,42 +36,43 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
-
-    article, aside, figcaption, figure, hgroup, nav{
-      display: block;
-    }
-
-    [tabindex="-1"]:focus {
-      outline: 0 !important;
-    }
   }
-  .container {
-    width:100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    @include make-container-max-widths();
-    &--fluid {
-      @extend .container;
-      max-width: 100%;
-    }
-  }
+}
+article, aside, figcaption, figure, hgroup, nav{
+  display: block;
+}
 
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-  }
+[tabindex="-1"]:focus {
+  outline: 0 !important;
+}
 
-  .col {
-    @each $modifier , $breakpoint in $map-grid-props {
-      @include create-col-classes($modifier, $grid__cols, $breakpoint);
-    }
-  }
-  img {
-    width: auto;
+.container {
+  width:100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  @include make-container-max-widths();
+  &--fluid {
+    @extend .container;
     max-width: 100%;
   }
+}
+
+.row {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col {
+  @each $modifier , $breakpoint in $map-grid-props {
+    @include create-col-classes($modifier, $grid__cols, $breakpoint);
+  }
+}
+img {
+  width: auto;
+  max-width: 100%;
 }

@@ -32,22 +32,34 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 
 h1, .h1 {
-  font-size: 3rem;
+  font-size:2.25rem;
+  @include media(mq(md), 'min') {
+    font-size:3rem;
+  }
   .forecast__info & {
     font-size: 5rem;
   }
 }
 
 h2, .h2 {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
+  @include media(mq(md), 'min') {
+    font-size:1.75rem;
+  }
 }
 
 h3, .h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  @include media(mq(md), 'min') {
+    font-size:1.5rem;
+  }
 }
 
 h4, .h4 {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
+  @include media(mq(md), 'min') {
+    font-size:1.25rem;
+  }
 }
 
 h5, .h5 {
@@ -68,6 +80,9 @@ p {
   margin-bottom: 1rem;
 }
 .lead {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   text-transform: none;
+  @include media(mq(md), 'min') {
+    font-size:1.25rem;
+  }
 }

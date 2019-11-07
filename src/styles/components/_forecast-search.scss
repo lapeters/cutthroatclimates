@@ -1,8 +1,17 @@
 .forecast__search {
   text-align: center;
   .forecast__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     input {
-      min-width: 30%;
+      flex: 1 1 auto;
+      @include media(mq('sm'), 'min') {
+        flex: 0 0 50%;
+      }
+      @include media(mq('lg'), 'min') {
+        flex: 0 0 30%;
+      }
     }
     .button-search {
       @include theme-gradients(day);

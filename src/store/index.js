@@ -8,8 +8,8 @@ export default new Vuex.Store({
   state: {
     forecasts: [],
     players: [
-      { i: 1, name: 'cpu', health: 100, defeated: false },
-      { i: 0, name: 'player', health: 100, defeated: false }
+      { i: 0, name: 'player', health: 100 },
+      { i: 1, name: 'cpu', health: 100 }
     ],
     gameLog: []
   },
@@ -24,7 +24,7 @@ export default new Vuex.Store({
       return state.players.find(players => players.name === name)
     },
     IS_PLAYER_DEFEATED: state => {
-      return state.players.filter(players => players.defeated)
+      return state.players.filter(players => players.end === 'loser')
     }
   },
   mutations: {
@@ -38,10 +38,9 @@ export default new Vuex.Store({
       Vue.set(state.forecasts[index], 'Player', true)
     },
     ATTACK: (state, { attack, name }) => {
-      var target = state.players.find(players => players.name !== name)
+      var target = state.players.find(players => players.name === name)
       if (target.health - attack <= 0) {
         target.health = 0
-        Vue.set(target, 'defeated', true)
       } else {
         target.health -= attack
       }
@@ -57,12 +56,21 @@ export default new Vuex.Store({
     RESET: (state) => {
       for (var i = 0, l = state.players.length; i < l; i++) {
         Vue.set(state.players[i], 'health', 100)
-        Vue.set(state.players[i], 'defeated', false)
+        Vue.set(state.players[i], 'end', null)
       }
       state.gameLog.splice(0, state.gameLog.length)
     },
     ADD_LOG: (state, { player, hit, action }) => {
       state.gameLog.unshift({ player, hit, action })
+    },
+    END_GAME: (state, name) => {
+      for (var i = 0, l = state.players.length; i < l; i++) {
+        if (state.players[i].name === name) {
+          Vue.set(state.players[i], 'end', 'loser')
+        } else {
+          Vue.set(state.players[i], 'end', 'winner')
+        }
+      }
     }
   },
   actions: {
@@ -91,14 +99,21 @@ export default new Vuex.Store({
       var num = Math.round(Math.random() * 10)
       return special ? num + 10 : num
     },
-    ATTACK ({ dispatch, commit }, { special, name }) {
+    ATTACK ({ state, dispatch, commit }, { special, name }) {
       return dispatch('GET_RANDOM_NUM', special).then((attack) => {
+        var target = state.players.find(players => players.name !== name)
         var payload = {
           attack: attack,
-          name: name
+          name: target.name
         }
-        commit('ATTACK', payload)
-        commit('ADD_LOG', { player: name, hit: attack, action: 'attacks' })
+        if (target.health - attack <= 0) {
+          commit('ATTACK', payload)
+          commit('ADD_LOG', { player: name, hit: attack, action: 'attacks' })
+          commit('END_GAME', target.name)
+        } else {
+          commit('ATTACK', payload)
+          commit('ADD_LOG', { player: name, hit: attack, action: 'attacks' })
+        }
       })
     },
     HEAL ({ dispatch, commit }, name) {
