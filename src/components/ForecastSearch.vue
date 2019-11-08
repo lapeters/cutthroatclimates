@@ -17,7 +17,8 @@
 
 <script>
 import ForecastSearchResults from '@/components/ForecastSearchResults'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
+import NProgress from 'nprogress'
 
 export default {
   components: {
@@ -32,12 +33,21 @@ export default {
     }
   },
   computed: {
+    ...mapState(['loading']),
     ...mapGetters({
       isForecastsFull: 'IS_FORECASTS_FULL'
     })
   },
+  watch: {
+    loading: function (newVal, oldVal) {
+      if (newVal === 1) return NProgress.start()
+      if (newVal === 0) return NProgress.done()
+      NProgress.set(1.8 / Math.max(oldVal, newVal))
+    }
+  },
   methods: {
     getForecast: function (term) {
+      NProgress.start()
       this.$store.dispatch('GET_FORECAST', term)
       this.city.search = ''
     }

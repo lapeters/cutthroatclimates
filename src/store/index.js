@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    loading: 0,
     forecasts: [],
     players: [
       { i: 0, name: 'player', health: 100 },
@@ -28,6 +29,12 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    START_LOADING: (state) => {
+      state.loading++
+    },
+    FINISH_LOADING: (state) => {
+      state.loading--
+    },
     ADD_FORECAST: (state, payload) => {
       state.forecasts.push(payload)
     },
@@ -79,8 +86,10 @@ export default new Vuex.Store({
       return response
     },
     GET_FORECAST ({ dispatch, commit }, term) {
+      commit('START_LOADING')
       return dispatch('GET_CITY', term).then((cityRes) => {
         Axios.get(process.env.VUE_APP_AW_URL + 'currentconditions/v1/' + cityRes.data[0].Key + '?apikey=' + process.env.VUE_APP_AW_API).then(response => {
+          commit('FINISH_LOADING')
           var name = cityRes.data[0].EnglishName
           var area = (cityRes.data[0].Country.ID === 'US' ? cityRes.data[0].AdministrativeArea.EnglishName : cityRes.data[0].Country.EnglishName)
           response.data[0].City = { Name: name, Area: area }
