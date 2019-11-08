@@ -7,20 +7,26 @@
   justify-content: center;
   transition: all .15s;
   z-index: 3;
-  &.sticky {
-    background: #58a5ff;
-    color: $white;
-    box-shadow: 0px 5px 30px 0px rgba($black, 0.3);
-    a, p {
-      color: $white;
-    }
-  }
   .header__wrap {
     width: 100%;
     padding:0.5rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .logo {
+      img {
+        max-width:30px;
+      }
+      strong {
+        display:none;
+        margin:0 0.5rem;
+        color: $night-first;
+
+        @include media(mq(sm), min) {
+          display:block;
+        }
+      }
+    }
     nav {
       ul {
         padding:0;
@@ -43,6 +49,19 @@
             }
           }
         }
+      }
+    }
+  }
+  &.sticky {
+    background: #58a5ff;
+    color: $white;
+    box-shadow: 0px 5px 30px 0px rgba($black, 0.3);
+    a, p {
+      color: $white;
+    }
+    .logo {
+      strong {
+        color: $white;
       }
     }
   }

@@ -1,7 +1,7 @@
 <template lang="html">
   <header class="header row" v-on:scroll.passive="handleScroll" v-bind:class="{ sticky: this.scrolled }">
     <div class="header__wrap col--12">
-      <div class="logo">CC</div>
+      <div class="logo"><img src="../assets/logo.png"> <strong>Cutthroat Climates</strong></div>
       <nav>
         <ul>
           <router-link to="/" v-slot="{ href, route, navigate, isActive, isExactActive }">
