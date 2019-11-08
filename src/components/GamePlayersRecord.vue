@@ -1,9 +1,9 @@
 <template lang="html">
   <div class="game__records row">
     <modal v-if="isModalVisible" v-bind:close="closeModal">
-      <div slot="header">Game Over</div>
+      <div slot="header"><strong>Game Over</strong></div>
       <div slot="body">
-        <p class="lead"><span class="log__player">{{ isPlayerDefeated[0].name }}</span> has lost.</p>
+        <h3><span class="log__player">{{ winner[0].name }}</span> won!</h3>
       </div>
     </modal>
     <div v-for="(log, index) in gameLog" v-bind:index="index" v-bind:key="index" class="game__log col--12">
@@ -30,7 +30,8 @@ export default {
   computed: {
     ...mapGetters({
       getPlayerByName: 'GET_PLAYER_BY_NAME',
-      isPlayerDefeated: 'IS_PLAYER_DEFEATED'
+      isPlayerDefeated: 'IS_PLAYER_DEFEATED',
+      winner: 'GET_WINNER'
     }),
     ...mapState(['gameLog'])
   },

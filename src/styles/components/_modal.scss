@@ -20,7 +20,8 @@
   z-index:10;
 
   .modal {
-    background: $white;
+    background: rgb(239,248,255);
+    background: linear-gradient(153deg, rgba(239,248,255,1) 0%, rgba(239,250,254,1) 50%, rgba(244,254,255,1) 100%);
     box-shadow: 2px 2px 50px 1px rgba($black, 0.3);
     overflow-x: auto;
     padding-top:1rem;
@@ -36,6 +37,7 @@
     }
     .modal__header {
       .button-close {
+        background: transparent;
         position: absolute;
         border: none;
         padding:15px;
@@ -46,9 +48,11 @@
     .modal__body {
       position: relative;
       padding: 20px 10px;
+      text-align: left;
     }
-    h2 {
+    h2, h3 {
       margin:0;
+      text-align: center;
     }
   }
 }

@@ -37,6 +37,11 @@
               color: $night-first;
             }
           }
+          &.router-link-exact-active {
+            a {
+              color: $night-first;
+            }
+          }
         }
       }
     }

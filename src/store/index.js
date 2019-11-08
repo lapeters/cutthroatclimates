@@ -26,6 +26,9 @@ export default new Vuex.Store({
     },
     IS_PLAYER_DEFEATED: state => {
       return state.players.filter(players => players.end === 'loser')
+    },
+    GET_WINNER: state => {
+      return state.players.filter(players => players.end === 'winner')
     }
   },
   mutations: {

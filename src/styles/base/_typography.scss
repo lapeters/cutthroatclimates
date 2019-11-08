@@ -79,6 +79,9 @@ a {
   background-color: transparent;
   color: #58a5ff;
   font-weight:400;
+  &:hover {
+    color: $night-first;
+  }
 }
 p {
   margin-top: 0;

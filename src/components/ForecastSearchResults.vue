@@ -5,7 +5,7 @@
         <h2>Now Select Your <strong>Fighter</strong>!</h2>
         <button class="button-bare" @click="showModal">Uh....fighter?!</button>
         <modal v-show="isModalVisible" v-bind:close="closeModal">
-          <div slot="header">Thats Right!</div>
+          <div slot="header"><strong>Thats Right!</strong></div>
           <div slot="body">
             <p>Cutthroat Climates is the weather app that turns into a weather-themed death match! The rules are simple:
             two climates walk in and only one walks out!</p>
