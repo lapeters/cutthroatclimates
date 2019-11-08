@@ -6,7 +6,7 @@
       <p>Please search for any two cities. Only two cities at a time, we dont want a war!</p>
       <form class="forecast__form" v-on:submit.prevent="getForecast(city.search)">
         <input type="text" name="" value="" v-bind:placeholder="this.placeholder" v-model="city.search">
-        <button class="button button-search" v-bind:disabled="isForecastsFull"><font-awesome-icon :icon="['fas', 'search']" /></button>
+        <button class="button button-day button-search" v-bind:disabled="isForecastsFull"><font-awesome-icon :icon="['fas', 'search']" /></button>
       </form>
     </section>
     <template v-if="this.$store.getters.FORECASTS.length">

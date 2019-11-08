@@ -1,5 +1,7 @@
 .forecast__search {
   text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
   .forecast__form {
     display: flex;
     justify-content: center;
@@ -11,20 +13,6 @@
       }
       @include media(mq('lg'), 'min') {
         flex: 0 0 30%;
-      }
-    }
-    .button-search {
-      @include theme-gradients(day);
-      color: $white;
-      font-weight:400;
-      text-transform: uppercase;
-      &:hover {
-        @include theme-gradients(night);
-      }
-      &:disabled {
-        &:hover {
-          @include theme-gradients(day);
-        }
       }
     }
   }

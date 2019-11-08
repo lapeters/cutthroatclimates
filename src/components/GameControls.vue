@@ -1,10 +1,10 @@
 <template lang="html">
   <div class="game__controls row">
     <div class="game__button-group col--12">
-      <button type="button" class="button button-game" v-on:click="attack(false)">Attack</button>
-      <button type="button" class="button button-game" v-on:click="attack(true)">Special Attack</button>
-      <button type="button" class="button button-game" v-on:click="heal()">Heal</button>
-      <button type="button" class="button button-game" v-on:click="reset()">Reset</button>
+      <button type="button" class="button button-day button-game" v-on:click="attack(false)">Attack</button>
+      <button type="button" class="button button-day button-game" v-on:click="attack(true)">Special Attack</button>
+      <button type="button" class="button button-day button-game" v-on:click="heal()">Heal</button>
+      <button type="button" class="button button-day button-game" v-on:click="reset()">Reset</button>
     </div>
   </div>
 </template>

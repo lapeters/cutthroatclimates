@@ -5,6 +5,16 @@
   top:0;
   width: 100%;
   justify-content: center;
+  transition: all .15s;
+  z-index: 3;
+  &.sticky {
+    background: #58a5ff;
+    color: $white;
+    box-shadow: 0px 5px 30px 0px rgba($black, 0.3);
+    a, p {
+      color: $white;
+    }
+  }
   .header__wrap {
     width: 100%;
     padding:0.5rem 1rem;
@@ -16,6 +26,18 @@
         padding:0;
         list-style-type: none;
         margin:0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        li {
+          a {
+            text-transform: uppercase;
+            padding:0.5rem 1rem;
+            &:hover {
+              color: $night-first;
+            }
+          }
+        }
       }
     }
   }

@@ -28,19 +28,49 @@ button {
     opacity: 0.5;
   }
 }
+.button-day {
+  @include theme-gradients(day);
+  color: $white;
+  font-weight:400;
+  text-transform: uppercase;
+  &:hover {
+    color: $white;
+    @include theme-gradients(night);
+  }
+  &:disabled {
+    &:hover {
+      @include theme-gradients(day);
+    }
+  }
+}
+
+.button-night {
+  @include theme-gradients(night);
+  color: $white;
+  font-weight:400;
+  text-transform: uppercase;
+  &:hover {
+    color: $white;
+    @include theme-gradients(day);
+  }
+  &:disabled {
+    &:hover {
+      @include theme-gradients(night);
+    }
+  }
+}
 
 .button-search {
   line-height:1.15;
   vertical-align: inherit;
   border-color: rgba(0,0,0,0.1);
-  color: $drk_blue;
 }
 
 .button-bare {
   border:none;
   background:transparent;
   padding:0;
-  color: $day-first;
+  color: #58a5ff;
   &:hover {
     color: $night-first;
   }
