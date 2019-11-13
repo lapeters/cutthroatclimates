@@ -1,0 +1,17 @@
+.page-404 {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+
+  .page-404__wrapper {
+    margin-top: 2rem;
+    margin-bottom:2rem;
+    justify-content: center;
+
+    .page-404__content {
+      h1 {
+        text-align: center;
+      }
+    }
+  }
+}
