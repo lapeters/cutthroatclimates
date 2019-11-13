@@ -1,8 +1,3 @@
-input {
-  padding:0.75rem 1rem;
-  border-color: rgba(0,0,0,0.1);
-  color: $drk_blue;
-}
 button {
   cursor: pointer;
   &:disabled {
@@ -14,6 +9,7 @@ button {
   display: inline-block;
   font-weight: 400;
   text-align: center;
+  text-transform: uppercase;
   vertical-align: middle;
   user-select: none;
   border: 1px solid;
@@ -31,8 +27,6 @@ button {
 .button-day {
   @include theme-gradients(day);
   color: $white;
-  font-weight:400;
-  text-transform: uppercase;
   &:hover {
     color: $white;
     @include theme-gradients(night);
@@ -47,8 +41,6 @@ button {
 .button-night {
   @include theme-gradients(night);
   color: $white;
-  font-weight:400;
-  text-transform: uppercase;
   &:hover {
     color: $white;
     @include theme-gradients(day);
@@ -57,6 +49,16 @@ button {
     &:hover {
       @include theme-gradients(night);
     }
+  }
+}
+
+.button-sunrise {
+  @include theme-gradients(sunrise);
+  border-color: $sunrise-first;
+  color: $white;
+  &:hover {
+    @include gradient($sunrise-first, $sunrise-first, horizontal);
+    color: $white;
   }
 }
 
@@ -72,6 +74,16 @@ button {
   padding:0;
   color: #58a5ff;
   &:hover {
-    color: $night-first;
+    color: $night-last;
   }
+}
+
+.button-close {
+  background: transparent;
+  position: absolute;
+  border: none;
+  padding: 15px;
+  right: 0;
+  top: 0;
+  cursor: pointer;
 }

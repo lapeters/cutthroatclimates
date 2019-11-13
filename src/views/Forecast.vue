@@ -1,7 +1,9 @@
 <template lang="html">
-  <main class="forecast">
-    <ForecastSearch />
-  </main>
+  <transition name="fade" appear>
+    <main class="forecast">
+      <ForecastSearch />
+    </main>
+  </transition>
 </template>
 
 <script>

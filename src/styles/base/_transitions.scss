@@ -1,0 +1,28 @@
+.fade-enter-active, .fade-leave-active,
+.fade-results-enter-active, .fade-results-leave-active
+ {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to,
+.fade-results-enter, .fade-results-leave-to {
+  opacity: 0;
+}
+.fade-item, .fade-results-item {
+  transition: all .3s;
+}
+.fade-move, .fade-results-move {
+  transition: transform .3s;
+}
+.fade-results-leave-active {
+  position: absolute;
+}
+
+.modal-fade-enter,
+.modal-fade-leave-active {
+  opacity: 0;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity .5s ease
+}

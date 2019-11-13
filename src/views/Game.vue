@@ -1,14 +1,16 @@
 <template lang="html">
-  <main class="game">
-    <template v-if="isForecastsFull">
-      <GamePlayers />
-      <GameControls />
-      <GamePlayersRecord />
-    </template>
-    <template v-else>
-      <Game404 />
-    </template>
-  </main>
+  <transition name="fade" appear>
+    <main class="game">
+      <template v-if="isForecastsFull">
+        <GamePlayers />
+        <GameControls />
+        <GamePlayersRecord />
+      </template>
+      <template v-else>
+        <Game404 />
+      </template>
+    </main>
+  </transition>
 </template>
 
 <script>

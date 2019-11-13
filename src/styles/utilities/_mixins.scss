@@ -1,3 +1,13 @@
+/* General Mixins
+============================== */
+@mixin optional-at-root($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+/* Color Mixins
+============================== */
 @mixin gradient($start-color, $end-color, $orientation) {
   background: $start-color;
   @if $orientation == 'vertical' {
@@ -24,9 +34,6 @@
 
 /* Grid Mixins
 =================================== */
-
-// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
-// Makes the @content apply to the given breakpoint and wider.
 @mixin media-breakpoint-up($name, $breakpoints: $grid__breakpoints) {
   $min: breakpoint-min($name, $breakpoints);
   @if $min {
@@ -38,7 +45,6 @@
   }
 }
 
-// For each breakpoint, define the maximum width of the container in a media query
 @mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid__breakpoints) {
   @each $breakpoint, $container-max-width in $max-widths {
     @include media-breakpoint-up($breakpoint, $breakpoints) {
@@ -91,5 +97,25 @@
     .hidden#{$modifier}-up {
       display: none !important;
     }
+  }
+}
+
+/* Placeholder Mixins
+=========================== */
+@mixin placeholder {
+  @include optional-at-root('::-webkit-input-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root('::-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-ms-input-placeholder') {
+    @content;
   }
 }

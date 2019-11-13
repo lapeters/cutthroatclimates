@@ -1,7 +1,7 @@
 <template lang="html">
   <footer class="footer row">
     <div class="footer__copyright col--12">
-      <p><small><strong>Disclaimer:</strong> This site makes use of Font Awesome icons with minor color changes. See license <a href="https://fontawesome.com/license" target="_blank">here</a>.</small></p>
+      <p><small><strong>Disclaimer:</strong> This site makes use of Font Awesome icons, some with color changes. See license <a href="https://fontawesome.com/license" target="_blank">here</a>.</small></p>
     </div>
     <div class="footer__copyright col--12"><p>&copy; Cutthroat Climates /
       <router-link to="/about">About</router-link> /

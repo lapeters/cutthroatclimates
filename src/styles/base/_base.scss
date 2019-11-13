@@ -29,6 +29,7 @@ body {
   background-repeat: no-repeat;
   font-family: $primary;
   font-size: 1rem;
+  color: $night-last;
 
   #app {
     position: relative;
@@ -40,6 +41,20 @@ body {
 }
 article, aside, figcaption, figure, hgroup, nav{
   display: block;
+}
+
+input {
+  padding:0.75rem 1rem;
+  border:1px solid rgba($night-last, 0.1);
+  color: $night-last;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+@include placeholder {
+  color: $night-last;
+  font-weight: 300;
+  font-size: 1rem;
 }
 
 [tabindex="-1"]:focus {
